@@ -38,14 +38,10 @@ else{
             $m2lMP->ajouterComposant($m2lMP->creerItemLien("contrats", "Mes contrats"));
             $m2lMP->ajouterComposant($m2lMP->creerItemLien("salaire", "Mes bulletins de salaire"));
             $m2lMP->ajouterComposant($m2lMP->creerItemLien("infos", "Mes informations personnelles"));
-            $m2lMP->ajouterComposant($m2lMP->creerItemLien("listeFormation", "Les formations"));
-            $m2lMP->ajouterComposant($m2lMP->creerItemLien("demandeFormation", "Mes demandes"));
             break;
 
         case "Benevole":
             $m2lMP->ajouterComposant($m2lMP->creerItemLien("infos", "Mes informations  personnelles"));
-            $m2lMP->ajouterComposant($m2lMP->creerItemLien("listeFormation", "Les formations"));
-            $m2lMP->ajouterComposant($m2lMP->creerItemLien("demandeFormation", "Mes demandes"));
             break;
 
         case "Gestionnaire Salaire":
@@ -72,12 +68,12 @@ $menuPrincipalM2L = $m2lMP->creerMenu($_SESSION['m2lMP'],'m2lMP');
 
 //Formulaire création de contrat
 if (isset($_POST['submitCréationContrats'])){
-    $casta = UserDAO::creationContrat($_POST['idContrat'], $_POST['dateDebut'], $_POST['dateFin'], $_POST['typeContrat'],$_POST['nbHeures'],$_POST['idUser']);
+    $casta = UserDAO::creationContrat($_POST['dateDebut'], $_POST['dateFin'], $_POST['typeContrat'],$_POST['nbHeures'],$_POST['idUser']);
 }
 
 //Formulaire modification de contrat
 if (isset($_POST['submitModificationContrats'])){
-    $casta2 = UserDAO::modificationContrat($_POST['ancidContrat'],$_POST['idContrat'], $_POST['dateDebut'], $_POST['dateFin'], $_POST['typeContrat'],$_POST['nbHeures'],$_POST['idUser']);
+    $casta2 = UserDAO::modificationContrat($_POST['idContrat'], $_POST['dateDebut'], $_POST['dateFin'], $_POST['typeContrat'],$_POST['nbHeures'],$_POST['idUser']);
 }
 
 //Formulaire supression de contrat
@@ -89,12 +85,12 @@ if (isset($_POST['submitSupprimerContrats'])){
 
 //Formulaire création de bulletins
 if (isset($_POST['submitCréationBulletins'])){
-    $casto = UserDAO::creationBulletin($_POST['idBulletin'], $_POST['mois'], $_POST['annee'], $_POST['bulletinPDF'],$_POST['idContrat']);
+    $casto = UserDAO::creationBulletin($_POST['mois'], $_POST['annee'], $_POST['bulletinPDF'],$_POST['idContrat']);
 }
 
 //Formulaire modification de bulletins
 if (isset($_POST['submitModificationBulletins'])){
-    $casto2 = UserDAO::modificationBulletin($_POST['ancidBulletin'],$_POST['idBulletin'], $_POST['mois'], $_POST['annee'], $_POST['bulletinPDF'],$_POST['idContrat']);
+    $casto2 = UserDAO::modificationBulletin($_POST['idBulletin'], $_POST['mois'], $_POST['annee'], $_POST['bulletinPDF'],$_POST['idContrat']);
 }
 
 //Formulaire création de bulletins
@@ -106,12 +102,12 @@ if (isset($_POST['submitSupprimerBulletins'])){
 
 //Formulaire création de comptes
 if (isset($_POST['submitCréationCompte'])){
-    $caste = UserDAO::creationCompte($_POST['idUser'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['statut'] ,$_POST['idFonc'], $_POST['idLigue'], $_POST['idClub']);
+    $caste = UserDAO::creationCompte($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'], $_POST['statut'] ,$_POST['idFonc'], $_POST['idLigue'], $_POST['idClub']);
 }
 
 //Formulaire modification de compte
 if (isset($_POST['submitModificationCompte'])){
-    $caste2 = UserDAO::modificationCompte($_POST['ancidUser'],$_POST['idUser'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'] ,$_POST['statut'],$_POST['idFonc'],$_POST['idLigue'],$_POST['idClub']);
+    $caste2 = UserDAO::modificationCompte($_POST['idUser'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['mdp'] ,$_POST['statut'],$_POST['idFonc'],$_POST['idLigue'],$_POST['idClub']);
 }
 
 //Formulaire création de bulletins
@@ -121,13 +117,15 @@ if (isset($_POST['submitSupprimerCompte'])){
 
 include_once dispatcher::dispatch($_SESSION['m2lMP']);
 
+
+
 if(isset($_POST['login']) && isset($_POST['mdp'])){
     //Si l'utilisateur s'est bien authentifié
     if(connexionDAO::authentication($_POST['login'], $_POST['mdp']) == 1){
 
         //Création de l'objet User et attribution à la variable de session identification
         $utilisateur = new User();
-		var_dump($_POST['login']);
+		//var_dump($_POST['login']);
         $utilisateur->hydrate(UserDAO::infoLogin($_POST['login']));
         $_SESSION['identification']= serialize($utilisateur);
         $_SESSION['m2lMP']="accueil";

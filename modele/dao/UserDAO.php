@@ -67,7 +67,7 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     //fonction permettant de retourner les ligues
     public static function lesclubs(){
         $resultat = DBConnex::getInstance()->prepare(
-            "SELECT CLUB.idClub, CLUB.nomClub
+            "SELECT CLUB.idClub, CLUB.nomClub, CLUB.idLigue
         FROM `CLUB`;");
         $resultat->execute();
         $res = $resultat->fetchAll(PDO::FETCH_ASSOC);
@@ -116,11 +116,10 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de crée un contrat
-    public static function creationContrat($idContrat, $dateDebut, $dateFin, $typeContrat, $nbHeures, $idUser){
+    public static function creationContrat($dateDebut, $dateFin, $typeContrat, $nbHeures, $idUser){
 
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "INSERT INTO `CONTRAT` (`idContrat`, `dateDebut`, `dateFin`, `typeContrat`, `nbHeures`, `idUser`) VALUES ('$idContrat', '$dateDebut', '$dateFin', '$typeContrat', '$nbHeures', '$idUser');");
-        $requetePrepa->bindParam(":idContrat", $idContrat);
+            "INSERT INTO `CONTRAT` (`dateDebut`, `dateFin`, `typeContrat`, `nbHeures`, `idUser`) VALUES ('$dateDebut', '$dateFin', '$typeContrat', '$nbHeures', '$idUser');");
         $requetePrepa->bindParam(":dateDebut", $dateDebut);
         $requetePrepa->bindParam(":dateFin" , $dateFin);
         $requetePrepa->bindParam(":typeContrat" , $typeContrat);
@@ -132,10 +131,10 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de modifier un contrat
-    public static function modificationContrat($ancidContrat, $idContrat, $dateDebut, $dateFin, $typeContrat, $nbHeures, $idUser){
+    public static function modificationContrat($idContrat, $dateDebut, $dateFin, $typeContrat, $nbHeures, $idUser){
 
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "UPDATE `CONTRAT` SET `idContrat` = '$idContrat', `dateDebut` = '$dateDebut', `dateFin` = '$dateFin', `typeContrat` = '$typeContrat', `nbHeures` = '$nbHeures' WHERE `CONTRAT`.`idContrat` = $ancidContrat;");
+            "UPDATE `CONTRAT` SET `idContrat` = '$idContrat', `dateDebut` = '$dateDebut', `dateFin` = '$dateFin', `typeContrat` = '$typeContrat', `nbHeures` = '$nbHeures' WHERE `CONTRAT`.`idContrat` = $idContrat;");
         $requetePrepa->bindParam(":idContrat", $idContrat);
         $requetePrepa->bindParam(":dateDebut", $dateDebut);
         $requetePrepa->bindParam(":dateFin" , $dateFin);
@@ -171,10 +170,10 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de crée un bulletin
-    public static function creationBulletin($idBulletin, $mois, $annee, $bulletinPDF,$idContrat){
+    public static function creationBulletin($mois, $annee, $bulletinPDF,$idContrat){
 
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "INSERT INTO `BULLETIN` (`idBulletin`, `mois`, `annee`, `bulletinPDF`, `idContrat`) VALUES ('$idBulletin', '$mois', '$annee', '$bulletinPDF', '$idContrat');");
+            "INSERT INTO `BULLETIN` (`mois`, `annee`, `bulletinPDF`, `idContrat`) VALUES ('$mois', '$annee', '$bulletinPDF', '$idContrat');");
         $requetePrepa->bindParam(":idBulletin", $idBulletin);
         $requetePrepa->bindParam(":mois", $mois);
         $requetePrepa->bindParam(":annee" , $annee);
@@ -186,10 +185,10 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de modifier un bulletin
-    public static function modificationBulletin($ancidBulletin, $idBulletin, $mois, $annee, $bulletinPDF,$idContrat){
+    public static function modificationBulletin($idBulletin, $mois, $annee, $bulletinPDF,$idContrat){
 
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "UPDATE `BULLETIN` SET `idBulletin` = '$idBulletin', `mois` = '$mois', `annee` = '$annee', `bulletinPDF` = '$bulletinPDF', `idContrat` = '$idContrat' WHERE `BULLETIN`.`idBulletin` = $ancidBulletin;");
+            "UPDATE `BULLETIN` SET `idBulletin` = '$idBulletin', `mois` = '$mois', `annee` = '$annee', `bulletinPDF` = '$bulletinPDF', `idContrat` = '$idContrat' WHERE `BULLETIN`.`idBulletin` = $idBulletin;");
         $requetePrepa->bindParam(":idBulletin", $idBulletin);
         $requetePrepa->bindParam(":mois", $mois);
         $requetePrepa->bindParam(":annee" , $annee);
@@ -225,12 +224,11 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de crée un compte
-    public static function creationCompte($idUser, $nom, $prenom, $login, $mdp, $statut, $idFonc, $idLigue, $idClub){
+    public static function creationCompte($nom, $prenom, $login, $mdp, $statut, $idFonc, $idLigue, $idClub){
 
         $mdp = hash('sha256', $mdp);
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "INSERT INTO `UTILISATEUR` (`idUser`, `nom`, `prenom`, `login`, `mdp`,`statut`, `idFonc`, `idLigue`, `idClub`) VALUES ('$idUser', '$nom', '$prenom', '$login', '$mdp','$statut', '$idFonc', '$idLigue', '$idClub');");
-        $requetePrepa->bindParam(":idUser", $idUser);
+            "INSERT INTO `UTILISATEUR` (`nom`, `prenom`, `login`, `mdp`,`statut`, `idFonc`, `idLigue`, `idClub`) VALUES ('$nom', '$prenom', '$login', '$mdp','$statut', '$idFonc', '$idLigue', '$idClub');");
         $requetePrepa->bindParam(":nom", $nom);
         $requetePrepa->bindParam(":prenom" , $prenom);
         $requetePrepa->bindParam(":login" , $login);
@@ -245,11 +243,11 @@ AND UTILISATEUR.idUser = DEMANDER.idUser;");
     }
 
     //fonction permettant de modifier un compte
-    public static function modificationCompte($ancidUser, $idUser, $nom, $prenom, $login, $mdp, $statut, $idFonc, $idLigue, $idClub){
+    public static function modificationCompte($idUser, $nom, $prenom, $login, $mdp, $statut, $idFonc, $idLigue, $idClub){
 
         $mdp = hash('sha256', $mdp);
         $requetePrepa = DBConnex::getInstance()->prepare(
-            "UPDATE `UTILISATEUR` SET `idUser` = '$idUser', `nom` = '$nom', `prenom` = '$prenom', `login` = '$login', `mdp` = '$mdp' , `statut` = '$statut' , `idFonc` = '$idFonc' , `idLigue` = '$idLigue' , `idClub` = '$idClub' WHERE `UTILISATEUR`.`idUser` = $ancidUser;");
+            "UPDATE `UTILISATEUR` SET `idUser` = '$idUser', `nom` = '$nom', `prenom` = '$prenom', `login` = '$login', `mdp` = '$mdp' , `statut` = '$statut' , `idFonc` = '$idFonc' , `idLigue` = '$idLigue' , `idClub` = '$idClub' WHERE `UTILISATEUR`.`idUser` = $idUser;");
         $requetePrepa->bindParam(":idUser", $idUser);
         $requetePrepa->bindParam(":nom", $nom);
         $requetePrepa->bindParam(":prenom" , $prenom);

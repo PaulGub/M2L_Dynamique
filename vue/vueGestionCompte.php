@@ -38,6 +38,10 @@
                     Nom club
                 </th>
 
+                <th>
+                    Identifiant ligue
+                </th>
+
             <?php
             $lesContrats = UserDAO::lesclubs();
             Affichage::transforTab($lesContrats);
@@ -56,11 +60,11 @@
                 </th>
 
                 <th>
-                    Prénom
+                    Nom
                 </th>
 
                 <th>
-                    Nom
+                    Prénom
                 </th>
 
                 <th>

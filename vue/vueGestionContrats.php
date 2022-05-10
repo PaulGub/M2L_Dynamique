@@ -80,7 +80,6 @@
 		
 		<br>
         <h2><i>Modifier un contrat :</i></h2>
-		<p><i>Attention n'essayer pas de modifier un contrat si des bulletins de salaire y sont associes.</i></p>
 		<br>
 		<?php
 		$formulaireModifContrats->afficherFormulaire();
@@ -88,7 +87,6 @@
 
 		<br>
         <h2><i>Supprimer un contrat :</i></h2>
-		<p><i>Attention n'essayer pas de supprimer un contrat si des bulletins de salaire y sont associes.</i></p>
 		<br>
 		<?php
 		$formulaireSuprrContrats->afficherFormulaire();

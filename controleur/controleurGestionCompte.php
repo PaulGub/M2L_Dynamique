@@ -4,12 +4,6 @@ include_once "lib/Affichage.php";
 
 $formulaireCreaCompte = new Formulaire('post', 'index.php', 'fConnexion', 'fConnexion');
 	
-$formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Numéro du compte :'));
-$formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Attention ne fonctionne pas avec certaines valeurs, par exemple 5[problème base de donées]'));
-$formulaireCreaCompte->ajouterComposantTab();
-$formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerInputTexte('idUser', 'idUser', '', 1, 'Entrez le numéro du compte', ''));
-$formulaireCreaCompte->ajouterComposantTab();
-
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Nom du compte:'));
 $formulaireCreaCompte->ajouterComposantTab();
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerInputTexte('nom', 'nom',  '',2, 'Entrez le nom du compte', ''));
@@ -41,13 +35,11 @@ $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerInputTe
 $formulaireCreaCompte->ajouterComposantTab();
 
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Identifiant de la ligue:'));
-$formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Attention ne fonctionne que avec la valeur 1 [problème base de donées]'));
 $formulaireCreaCompte->ajouterComposantTab();
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerInputTexte('idLigue', 'idLigue',  '',7, 'Entrez identifiant de la ligue', ''));
 $formulaireCreaCompte->ajouterComposantTab();
 
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Identifiant du club:'));
-$formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerLabel('Attention ne fonctionne que avec la valeur 1 [problème base de donées]'));
 $formulaireCreaCompte->ajouterComposantTab();
 $formulaireCreaCompte->ajouterComposantLigne($formulaireCreaCompte->creerInputTexte('idClub', 'idClub',  '',8, 'Entrez identifiant du club', ''));
 $formulaireCreaCompte->ajouterComposantTab();
@@ -61,13 +53,7 @@ $formulaireCreaCompte->creerFormulaire();
 
 $formulaireModifCompte = new Formulaire('post', 'index.php', 'fConnexion', 'fConnexion');
 	
-$formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Ancien numéro de compte :'));
-$formulaireModifCompte->ajouterComposantTab();
-$formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerInputTexte('ancidUser', 'ancidUser', '', 1, 'Entrez ancien numéro du compte', ''));
-$formulaireModifCompte->ajouterComposantTab();
-
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Numéro du compte :'));
-$formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Attention ne fonctionne pas avec certaines valeurs, par exemple 5[problème base de donées]'));
 $formulaireModifCompte->ajouterComposantTab();
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerInputTexte('idUser', 'idUser', '', 1, 'Entrez le numéro du compte', ''));
 $formulaireModifCompte->ajouterComposantTab();
@@ -103,13 +89,11 @@ $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerInput
 $formulaireModifCompte->ajouterComposantTab();
 
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Identifiant de la ligue:'));
-$formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Attention ne fonctionne que avec la valeur 1 [problème base de donées]'));
 $formulaireModifCompte->ajouterComposantTab();
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerInputTexte('idLigue', 'idLigue',  '',7, 'Entrez identifiant de la ligue', ''));
 $formulaireModifCompte->ajouterComposantTab();
 
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Identifiant du club:'));
-$formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerLabel('Attention ne fonctionne que avec la valeur 1 [problème base de donées]'));
 $formulaireModifCompte->ajouterComposantTab();
 $formulaireModifCompte->ajouterComposantLigne($formulaireModifCompte->creerInputTexte('idClub', 'idClub',  '',8, 'Entrez identifiant du club', ''));
 $formulaireModifCompte->ajouterComposantTab();

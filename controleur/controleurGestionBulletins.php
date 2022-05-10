@@ -4,11 +4,6 @@ include_once "lib/Affichage.php";
 
 $formulaireCreaBulletins = new Formulaire('post', 'index.php', 'fConnexion', 'fConnexion');
 	
-$formulaireCreaBulletins->ajouterComposantLigne($formulaireCreaBulletins->creerLabel('Numéro du bulletin:'));
-$formulaireCreaBulletins->ajouterComposantTab();
-$formulaireCreaBulletins->ajouterComposantLigne($formulaireCreaBulletins->creerInputTexte('idBulletin', 'idBulletin', '', 1, 'Entrez le numéro du bulletin', ''));
-$formulaireCreaBulletins->ajouterComposantTab();
-
 $formulaireCreaBulletins->ajouterComposantLigne($formulaireCreaBulletins->creerLabel('Mois du bulletin:'));
 $formulaireCreaBulletins->ajouterComposantTab();
 $formulaireCreaBulletins->ajouterComposantLigne($formulaireCreaBulletins->creerInputTexte('mois', 'mois',  '',2, 'Entrez le mois du bulletin', ''));
@@ -38,11 +33,6 @@ $formulaireCreaBulletins->creerFormulaire();
 
 $formulaireModifBulletins = new Formulaire('post', 'index.php', 'fConnexion', 'fConnexion');
 	
-$formulaireModifBulletins->ajouterComposantLigne($formulaireModifBulletins->creerLabel('Ancien numéro du bulletin :'));
-$formulaireModifBulletins->ajouterComposantTab();
-$formulaireModifBulletins->ajouterComposantLigne($formulaireModifBulletins->creerInputTexte('ancidBulletin', 'ancidBulletin', '', 1, 'Entrez ancien numéro du bulletin', ''));
-$formulaireModifBulletins->ajouterComposantTab();
-
 $formulaireModifBulletins->ajouterComposantLigne($formulaireModifBulletins->creerLabel('Numéro du bulletin:'));
 $formulaireModifBulletins->ajouterComposantTab();
 $formulaireModifBulletins->ajouterComposantLigne($formulaireModifBulletins->creerInputTexte('idBulletin', 'idBulletin', '', 1, 'Entrez le numéro du bulletin', ''));
