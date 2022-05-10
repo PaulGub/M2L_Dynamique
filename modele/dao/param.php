@@ -2,7 +2,7 @@
 //Définition des variables de connexion
 
 class Param {
-	public static $user = 'piraubeg';
-	public static $pass = 'piraubeg';
-	public static $dsn = 'mysql:host=10.100.0.5;dbname=piraubeg_APSiteDynamique;charset=utf8';
+	public static $user = 'root';
+	public static $pass = '';
+	public static $dsn = 'mysql:host=localhost;dbname=m2l_php;charset=utf8';
 }
