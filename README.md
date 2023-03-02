@@ -1,4 +1,4 @@
-# M2L_PHP
+# m2l-php
 
 ### Projet réalisé lors de mon BTS SIO (en équipe)
 
